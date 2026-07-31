@@ -7,7 +7,6 @@ import {
   Crosshair,
   EnvelopeSimple,
   Factory,
-  GearSix,
   Hammer,
   List,
   MapPin,
@@ -16,13 +15,18 @@ import {
   Ruler,
   Scissors,
   ShieldCheck,
-  Timer,
   Truck,
   UploadSimple,
   WhatsappLogo,
   Wrench,
   X,
 } from "@phosphor-icons/react";
+import {
+  capacityRows,
+  portfolioItems,
+  processSteps,
+  technicalStats,
+} from "./content.js";
 
 const whatsappNumber = "628112748787";
 const whatsappIntro = encodeURIComponent(
@@ -54,49 +58,7 @@ const services = [
   },
 ];
 
-const trustPoints = [
-  {
-    icon: ShieldCheck,
-    title: "Presisi Tinggi",
-    description: "Toleransi ketat untuk hasil yang konsisten.",
-  },
-  {
-    icon: Timer,
-    title: "Proses Cepat",
-    description: "Produksi efisien tanpa mengorbankan kualitas.",
-  },
-  {
-    icon: GearSix,
-    title: "Kapasitas Fleksibel",
-    description: "Satuan, batch kecil, hingga produksi massal.",
-  },
-  {
-    icon: Truck,
-    title: "Kirim Seluruh Indonesia",
-    description: "Pengemasan aman untuk pesanan satuan maupun partai.",
-  },
-];
-
-const processSteps = [
-  {
-    icon: Blueprint,
-    number: "01",
-    title: "Kirim kebutuhan",
-    description: "Bagikan gambar, ukuran, material, jumlah, dan target pengerjaan.",
-  },
-  {
-    icon: Ruler,
-    number: "02",
-    title: "Review & penawaran",
-    description: "Tim kami memeriksa detail lalu mengonfirmasi proses dan penawaran.",
-  },
-  {
-    icon: Factory,
-    number: "03",
-    title: "Produksi presisi",
-    description: "Pesanan dikerjakan sesuai spesifikasi dan diperiksa sebelum dikirim.",
-  },
-];
+const processIcons = [Blueprint, Ruler, Factory, Truck];
 
 const faqs = [
   {
@@ -183,8 +145,8 @@ function Header() {
         >
           <div className="main-nav__links">
             <a href="#layanan" onClick={closeMenu}>Layanan <CaretDown aria-hidden="true" /></a>
-            <a href="#material" onClick={closeMenu}>Kemampuan</a>
-            <a href="#galeri" onClick={closeMenu}>Galeri</a>
+            <a href="#kapasitas" onClick={closeMenu}>Kapasitas</a>
+            <a href="#portofolio" onClick={closeMenu}>Portofolio</a>
             <a href="#tentang" onClick={closeMenu}>Tentang Kami</a>
             <a href="#kontak" onClick={closeMenu}>Kontak</a>
           </div>
@@ -208,13 +170,18 @@ function Hero() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__copy">
         <div className="hero__copy-inner" data-reveal="left">
-          <p className="hero__eyebrow"><span aria-hidden="true" /> Presisi. Cepat. Terpercaya.</p>
-          <h1 id="hero-title">Laser Cutting &amp;<br />Fabrikasi Logam<br />Presisi</h1>
+          <p className="hero__eyebrow"><span aria-hidden="true" /> Kapasitas industri untuk kebutuhan B2B</p>
+          <h1 id="hero-title">Laser Cutting &amp; Fabrikasi Logam Presisi Hingga 20 mm</h1>
           <span className="hero__rule" aria-hidden="true" />
           <p className="hero__lead">
-            Dari prototipe satuan hingga produksi partai—dikerjakan rapi,
-            akurat, dan dikirim ke seluruh Indonesia.
+            Menerima Mild Steel, Stainless Steel, Aluminium, dan Brass—dari
+            prototipe hingga produksi partai dengan quality control sebelum kirim.
           </p>
+          <ul className="hero__specs" aria-label="Spesifikasi utama">
+            <li><strong>1500 × 3000 mm</strong><span>Area kerja mock</span></li>
+            <li><strong>±0.1 mm</strong><span>Toleransi mock</span></li>
+            <li><strong>DXF / DWG / STEP</strong><span>File siap review</span></li>
+          </ul>
           <div className="hero__actions">
             <a
               className="button button--primary"
@@ -222,10 +189,10 @@ function Hero() {
               target="_blank"
               rel="noreferrer"
             >
-              Minta Penawaran <ArrowRight aria-hidden="true" />
+              Kirim Drawing &amp; Minta Penawaran <ArrowRight aria-hidden="true" />
             </a>
-            <a className="button button--secondary" href="#material">
-              Lihat Kemampuan <ArrowRight aria-hidden="true" />
+            <a className="button button--secondary" href="#kapasitas">
+              Lihat Kapasitas <ArrowRight aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -246,22 +213,68 @@ function Hero() {
 
 function TrustStrip() {
   return (
-    <section className="trust-strip" aria-label="Keunggulan utama">
+    <section className="trust-strip" aria-label="Ringkasan kapasitas teknis">
       <div className="container trust-strip__grid">
-        {trustPoints.map(({ icon: Icon, title, description }, index) => (
+        {technicalStats.map(({ value, label }, index) => (
           <article
             className="trust-item"
-            key={title}
+            key={value}
             data-reveal="up"
             style={{ "--reveal-delay": `${index * 90}ms` }}
           >
-            <Icon aria-hidden="true" weight="regular" />
             <div>
-              <h2>{title}</h2>
-              <p>{description}</p>
+              <strong>{value}</strong>
+              <p>{label}</p>
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function CapacityMatrix() {
+  return (
+    <section className="section capacity" id="kapasitas" aria-labelledby="capacity-title">
+      <div className="container">
+        <div className="section-heading capacity__heading" data-reveal="up">
+          <div>
+            <p className="eyebrow">Material &amp; capacity matrix</p>
+            <h2 id="capacity-title">Spesifikasi yang Engineer Butuhkan di Awal</h2>
+          </div>
+          <div className="capacity__intro">
+            <span className="mock-badge">Data mock presentasi</span>
+            <p>Angka berikut adalah contoh kapasitas dan wajib divalidasi bersama tim produksi sebelum publikasi komersial.</p>
+          </div>
+        </div>
+        <div className="capacity-table-wrap" data-reveal="up">
+          <table>
+            <caption className="sr-only">Kapasitas laser cutting berdasarkan material</caption>
+            <thead>
+              <tr>
+                <th scope="col">Material</th>
+                <th scope="col">Ketebalan</th>
+                <th scope="col">Toleransi</th>
+                <th scope="col">Contoh aplikasi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {capacityRows.map((row) => (
+                <tr key={row.material}>
+                  <th scope="row">{row.material}</th>
+                  <td>{row.thickness}</td>
+                  <td>{row.tolerance}</td>
+                  <td>{row.useCase}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="capacity__footer" data-reveal="up">
+          <span><Ruler aria-hidden="true" /> Meja kerja mock 1500 × 3000 mm</span>
+          <span><ShieldCheck aria-hidden="true" /> Pemeriksaan dimensi sebelum pengiriman</span>
+          <a className="text-link" href="#kontak">Cek kelayakan drawing <ArrowRight aria-hidden="true" /></a>
+        </div>
       </div>
     </section>
   );
@@ -302,7 +315,7 @@ function CapabilitySection() {
   ];
 
   return (
-    <section className="section capability" id="material" aria-labelledby="capability-title">
+    <section className="section capability" id="kemampuan" aria-labelledby="capability-title">
       <div className="container capability__layout">
         <div className="capability__copy" data-reveal="left">
           <p className="eyebrow eyebrow--light">Kemampuan produksi</p>
@@ -321,7 +334,7 @@ function CapabilitySection() {
           </a>
         </div>
 
-        <figure className="capability__figure" id="galeri" data-reveal="right">
+        <figure className="capability__figure" data-reveal="right">
           <img
             src="/assets/portfolio-fabrication.webp"
             alt="Enclosure logam hasil laser cutting dan bending presisi"
@@ -334,6 +347,44 @@ function CapabilitySection() {
             Enclosure presisi dengan potongan ventilasi dan tekukan konsisten.
           </figcaption>
         </figure>
+      </div>
+    </section>
+  );
+}
+
+function PortfolioGallery() {
+  return (
+    <section className="section portfolio" id="portofolio" aria-labelledby="portfolio-title">
+      <div className="container">
+        <div className="section-heading portfolio__heading" data-reveal="up">
+          <div>
+            <p className="eyebrow eyebrow--light">Bukti hasil produksi</p>
+            <h2 id="portfolio-title">Kualitas Tepi dan Detail yang Terlihat</h2>
+          </div>
+          <p>Contoh visual mock untuk mempresentasikan kategori hasil kerja yang paling relevan bagi calon klien B2B.</p>
+        </div>
+        <div className="portfolio-grid">
+          {portfolioItems.map((item, index) => (
+            <article
+              className="portfolio-card"
+              key={item.title}
+              data-reveal="up"
+              style={{ "--reveal-delay": `${index * 80}ms` }}
+            >
+              <div className="portfolio-card__image">
+                <img src={item.image} alt={item.alt} width="1536" height="1024" loading="lazy" />
+                <span>{item.category}</span>
+              </div>
+              <div className="portfolio-card__body">
+                <h3>{item.title}</h3>
+                <dl>
+                  <div><dt>Proses</dt><dd>{item.process}</dd></div>
+                  <div><dt>Material</dt><dd>{item.material}</dd></div>
+                </dl>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -382,21 +433,24 @@ function ProcessSection() {
         <div className="section-heading" data-reveal="up">
           <p className="eyebrow">Alur sederhana</p>
           <h2 id="process-title">Mulai dari Gambar, Lanjut ke Produksi</h2>
-          <p>Tiga langkah untuk mendapatkan estimasi yang lebih tepat.</p>
+          <p>Empat tahap transparan dari review file hingga produk dikirim.</p>
         </div>
         <ol className="process-grid">
-          {processSteps.map(({ icon: Icon, number, title, description }, index) => (
-            <li
-              key={number}
-              data-reveal="up"
-              style={{ "--reveal-delay": `${index * 100}ms` }}
-            >
-              <span className="process-grid__number">{number}</span>
-              <Icon aria-hidden="true" />
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </li>
-          ))}
+          {processSteps.map(({ number, title, description }, index) => {
+            const Icon = processIcons[index];
+            return (
+              <li
+                key={number}
+                data-reveal="up"
+                style={{ "--reveal-delay": `${index * 100}ms` }}
+              >
+                <span className="process-grid__number">{number}</span>
+                <Icon aria-hidden="true" />
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>
@@ -435,6 +489,9 @@ function QuoteForm() {
     if (!values.get("name")?.trim()) nextErrors.name = "Masukkan nama Anda.";
     if (!values.get("phone")?.trim()) nextErrors.phone = "Masukkan nomor WhatsApp.";
     if (!values.get("service")) nextErrors.service = "Pilih layanan yang dibutuhkan.";
+    if (!values.get("material")) nextErrors.material = "Pilih material.";
+    if (!values.get("thickness")?.trim()) nextErrors.thickness = "Masukkan ketebalan.";
+    if (!values.get("quantity")?.trim()) nextErrors.quantity = "Masukkan jumlah.";
     return nextErrors;
   };
 
@@ -454,8 +511,11 @@ function QuoteForm() {
       `Nama: ${formData.get("name")}`,
       `WhatsApp: ${formData.get("phone")}`,
       `Layanan: ${formData.get("service")}`,
+      `Material: ${formData.get("material")}`,
+      `Ketebalan: ${formData.get("thickness")} mm`,
+      `Jumlah: ${formData.get("quantity")} pcs`,
       formData.get("message") ? `Kebutuhan: ${formData.get("message")}` : "",
-      fileName ? `File yang akan dikirim: ${fileName}` : "",
+      `File yang akan dikirim manual: ${fileName || "Belum dipilih"}`,
     ].filter(Boolean).join("\n");
 
     setResultUrl(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
@@ -468,7 +528,7 @@ function QuoteForm() {
           <p className="eyebrow eyebrow--light">Minta penawaran</p>
           <h2 id="quote-title">Ceritakan Kebutuhan Anda</h2>
           <p>
-            Isi tiga informasi utama. Ringkasannya akan disiapkan untuk dikirim
+            Isi spesifikasi utama. Ringkasannya akan disiapkan untuk dikirim
             melalui WhatsApp tanpa menyimpan data di website ini.
           </p>
           <div className="contact-list">
@@ -526,6 +586,50 @@ function QuoteForm() {
             {errors.service && <span className="field__error" id="service-error">{errors.service}</span>}
           </div>
 
+          <div className="field-row">
+            <div className="field">
+              <label htmlFor="material">Material <span aria-hidden="true">*</span></label>
+              <select
+                id="material"
+                name="material"
+                defaultValue=""
+                aria-invalid={Boolean(errors.material)}
+                aria-describedby={errors.material ? "material-error" : undefined}
+              >
+                <option value="" disabled>Pilih material</option>
+                {capacityRows.map((row) => <option key={row.material}>{row.material}</option>)}
+              </select>
+              {errors.material && <span className="field__error" id="material-error">{errors.material}</span>}
+            </div>
+            <div className="field">
+              <label htmlFor="thickness">Ketebalan (mm) <span aria-hidden="true">*</span></label>
+              <input
+                id="thickness"
+                name="thickness"
+                type="text"
+                inputMode="decimal"
+                placeholder="Contoh: 3"
+                aria-invalid={Boolean(errors.thickness)}
+                aria-describedby={errors.thickness ? "thickness-error" : undefined}
+              />
+              {errors.thickness && <span className="field__error" id="thickness-error">{errors.thickness}</span>}
+            </div>
+            <div className="field">
+              <label htmlFor="quantity">Jumlah (pcs) <span aria-hidden="true">*</span></label>
+              <input
+                id="quantity"
+                name="quantity"
+                type="number"
+                min="1"
+                inputMode="numeric"
+                placeholder="Contoh: 50"
+                aria-invalid={Boolean(errors.quantity)}
+                aria-describedby={errors.quantity ? "quantity-error" : undefined}
+              />
+              {errors.quantity && <span className="field__error" id="quantity-error">{errors.quantity}</span>}
+            </div>
+          </div>
+
           <div className="field">
             <label htmlFor="message">Detail kebutuhan <span>(opsional)</span></label>
             <textarea
@@ -545,10 +649,10 @@ function QuoteForm() {
               id="drawing"
               name="drawing"
               type="file"
-              accept=".dxf,.dwg,.pdf,.jpg,.jpeg,.png"
+              accept=".dxf,.dwg,.pdf,.step,.jpg,.jpeg,.png"
               onChange={(event) => setFileName(event.target.files?.[0]?.name || "")}
             />
-            <small>DXF, DWG, PDF, JPG, atau PNG. File dikirim langsung melalui WhatsApp.</small>
+            <small>DXF, DWG, PDF, STEP, JPG, atau PNG. Website hanya mencatat nama file; lampirkan file manual di WhatsApp.</small>
           </div>
 
           <button className="button button--primary button--full" type="submit">
@@ -586,7 +690,8 @@ function Footer() {
         <nav aria-label="Navigasi footer">
           <strong>Jelajahi</strong>
           <a href="#layanan">Layanan</a>
-          <a href="#galeri">Galeri</a>
+          <a href="#kapasitas">Kapasitas</a>
+          <a href="#portofolio">Portofolio</a>
           <a href="#tentang">Tentang Kami</a>
           <a href="#kontak">Kontak</a>
         </nav>
@@ -602,6 +707,21 @@ function Footer() {
         <span>Fabrikasi presisi untuk kebutuhan Anda.</span>
       </div>
     </footer>
+  );
+}
+
+function MobileWhatsappCta() {
+  return (
+    <a
+      className="mobile-whatsapp-cta"
+      href={whatsappHref}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Minta penawaran melalui WhatsApp"
+    >
+      <WhatsappLogo aria-hidden="true" weight="fill" />
+      Minta Penawaran
+    </a>
   );
 }
 
@@ -644,15 +764,18 @@ export function App() {
       <Header />
       <main id="main-content">
         <Hero />
-        <Services />
         <TrustStrip />
+        <CapacityMatrix />
+        <Services />
         <CapabilitySection />
+        <PortfolioGallery />
         <AboutSection />
         <ProcessSection />
         <FaqSection />
         <QuoteForm />
       </main>
       <Footer />
+      <MobileWhatsappCta />
     </>
   );
 }
