@@ -3,6 +3,7 @@ dist/
 .vite/
 .vercel/
 .superpowers/
+.worktrees/
 audit/
 *.log
 .DS_Store
