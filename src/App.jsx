@@ -18,7 +18,6 @@ import {
   Truck,
   UploadSimple,
   WhatsappLogo,
-  Wrench,
   X,
 } from "@phosphor-icons/react";
 import {
@@ -170,7 +169,6 @@ function Hero() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__copy">
         <div className="hero__copy-inner" data-reveal="left">
-          <p className="hero__eyebrow"><span aria-hidden="true" /> Kapasitas industri untuk kebutuhan B2B</p>
           <h1 id="hero-title">Laser Cutting &amp; Fabrikasi Logam Presisi Hingga 20 mm</h1>
           <span className="hero__rule" aria-hidden="true" />
           <p className="hero__lead">
@@ -239,7 +237,6 @@ function CapacityMatrix() {
       <div className="container">
         <div className="section-heading capacity__heading" data-reveal="up">
           <div>
-            <p className="eyebrow">Material &amp; capacity matrix</p>
             <h2 id="capacity-title">Spesifikasi yang Engineer Butuhkan di Awal</h2>
           </div>
           <div className="capacity__intro">
@@ -247,6 +244,7 @@ function CapacityMatrix() {
             <p>Angka berikut adalah contoh kapasitas dan wajib divalidasi bersama tim produksi sebelum publikasi komersial.</p>
           </div>
         </div>
+        <p className="table-scroll-hint"><ArrowRight aria-hidden="true" /> Geser tabel untuk melihat seluruh spesifikasi</p>
         <div className="capacity-table-wrap" data-reveal="up">
           <table>
             <caption className="sr-only">Kapasitas laser cutting berdasarkan material</caption>
@@ -292,7 +290,7 @@ function Services() {
               data-reveal="up"
               style={{ "--reveal-delay": `${index * 100}ms` }}
             >
-              <Icon className="service-item__icon" aria-hidden="true" weight="light" />
+              <Icon className="service-item__icon" aria-hidden="true" weight="regular" />
               <div>
                 <h3>{title}</h3>
                 <p>{description}</p>
@@ -318,7 +316,6 @@ function CapabilitySection() {
     <section className="section capability" id="kemampuan" aria-labelledby="capability-title">
       <div className="container capability__layout">
         <div className="capability__copy" data-reveal="left">
-          <p className="eyebrow eyebrow--light">Kemampuan produksi</p>
           <h2 id="capability-title">Satu Mitra untuk Proses Fabrikasi Anda</h2>
           <p>
             Kami membantu bengkel, usaha, reseller, dan kebutuhan pribadi
@@ -358,7 +355,6 @@ function PortfolioGallery() {
       <div className="container">
         <div className="section-heading portfolio__heading" data-reveal="up">
           <div>
-            <p className="eyebrow eyebrow--light">Bukti hasil produksi</p>
             <h2 id="portfolio-title">Kualitas Tepi dan Detail yang Terlihat</h2>
           </div>
           <p>Contoh visual mock untuk mempresentasikan kategori hasil kerja yang paling relevan bagi calon klien B2B.</p>
@@ -405,7 +401,6 @@ function AboutSection() {
           <span className="about__location"><MapPin aria-hidden="true" /> Purbalingga, Jawa Tengah</span>
         </div>
         <div className="about__copy" data-reveal="right">
-          <p className="eyebrow">Tentang Braling</p>
           <h2 id="about-title">Detail yang Baik Dimulai dari Komunikasi yang Jelas</h2>
           <p>
             Braling Inti Logam bergerak di bidang fabrikasi logam, cutting laser CNC,
@@ -431,7 +426,6 @@ function ProcessSection() {
     <section className="section process" aria-labelledby="process-title">
       <div className="container">
         <div className="section-heading" data-reveal="up">
-          <p className="eyebrow">Alur sederhana</p>
           <h2 id="process-title">Mulai dari Gambar, Lanjut ke Produksi</h2>
           <p>Empat tahap transparan dari review file hingga produk dikirim.</p>
         </div>
@@ -462,7 +456,6 @@ function FaqSection() {
     <section className="section faq" aria-labelledby="faq-title">
       <div className="container faq__layout">
         <div className="section-heading" data-reveal="left">
-          <p className="eyebrow">Pertanyaan umum</p>
           <h2 id="faq-title">Sebelum Anda Memesan</h2>
           <p>Informasi singkat untuk membantu menyiapkan kebutuhan fabrikasi.</p>
         </div>
@@ -497,12 +490,13 @@ function QuoteForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const nextErrors = validate(formData);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
-      requestAnimationFrame(() => event.currentTarget.querySelector("[aria-invalid='true']")?.focus());
+      requestAnimationFrame(() => form.querySelector("[aria-invalid='true']")?.focus());
       return;
     }
 
@@ -525,7 +519,6 @@ function QuoteForm() {
     <section className="section quote" id="kontak" aria-labelledby="quote-title">
       <div className="container quote__layout">
         <div className="quote__copy" data-reveal="left">
-          <p className="eyebrow eyebrow--light">Minta penawaran</p>
           <h2 id="quote-title">Ceritakan Kebutuhan Anda</h2>
           <p>
             Isi spesifikasi utama. Ringkasannya akan disiapkan untuk dikirim
@@ -538,7 +531,8 @@ function QuoteForm() {
           </div>
         </div>
 
-        <form className="quote-form" onSubmit={handleSubmit} noValidate data-reveal="right">
+        <form className="quote-form" onSubmit={handleSubmit} noValidate data-reveal="right" aria-describedby="required-note">
+          <p className="form-required-note" id="required-note"><span aria-hidden="true">*</span> Wajib diisi</p>
           <div className="field">
             <label htmlFor="name">Nama <span aria-hidden="true">*</span></label>
             <input
@@ -546,6 +540,8 @@ function QuoteForm() {
               name="name"
               type="text"
               autoComplete="name"
+              required
+              aria-required="true"
               aria-invalid={Boolean(errors.name)}
               aria-describedby={errors.name ? "name-error" : undefined}
             />
@@ -561,6 +557,8 @@ function QuoteForm() {
               inputMode="tel"
               autoComplete="tel"
               placeholder="Contoh: 0811 2748 787"
+              required
+              aria-required="true"
               aria-invalid={Boolean(errors.phone)}
               aria-describedby={errors.phone ? "phone-error" : undefined}
             />
@@ -573,6 +571,8 @@ function QuoteForm() {
               id="service"
               name="service"
               defaultValue=""
+              required
+              aria-required="true"
               aria-invalid={Boolean(errors.service)}
               aria-describedby={errors.service ? "service-error" : undefined}
             >
@@ -593,6 +593,8 @@ function QuoteForm() {
                 id="material"
                 name="material"
                 defaultValue=""
+                required
+                aria-required="true"
                 aria-invalid={Boolean(errors.material)}
                 aria-describedby={errors.material ? "material-error" : undefined}
               >
@@ -609,6 +611,8 @@ function QuoteForm() {
                 type="text"
                 inputMode="decimal"
                 placeholder="Contoh: 3"
+                required
+                aria-required="true"
                 aria-invalid={Boolean(errors.thickness)}
                 aria-describedby={errors.thickness ? "thickness-error" : undefined}
               />
@@ -623,6 +627,8 @@ function QuoteForm() {
                 min="1"
                 inputMode="numeric"
                 placeholder="Contoh: 50"
+                required
+                aria-required="true"
                 aria-invalid={Boolean(errors.quantity)}
                 aria-describedby={errors.quantity ? "quantity-error" : undefined}
               />
@@ -640,7 +646,7 @@ function QuoteForm() {
             />
           </div>
 
-          <div className="field file-field">
+          <div className={`field file-field ${fileName ? "file-field--selected" : ""}`}>
             <label className="file-field__label" htmlFor="drawing">
               <UploadSimple aria-hidden="true" />
               <span>{fileName || "Pilih gambar atau file desain"}</span>

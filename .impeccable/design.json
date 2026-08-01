@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-01T00:00:00+07:00",
+  "title": "Design System: Braling Inti Logam",
+  "extensions": {
+    "colorMeta": {
+      "braling-blue": {
+        "role": "primary",
+        "displayName": "Braling Rich Blue",
+        "canonical": "#0c5488",
+        "tonalRamp": ["#06253d", "#073e68", "#0c5488", "#2675aa", "#5a9bc5", "#91bdd8", "#c5ddea", "#eaf3f8"]
+      },
+      "braling-blue-deep": {
+        "role": "primary",
+        "displayName": "Workshop Deep Blue",
+        "canonical": "#062f52",
+        "tonalRamp": ["#031a2d", "#062f52", "#0a4a78", "#256b96", "#5a91b2", "#91b7ca", "#c7dce6", "#eef5f8"]
+      },
+      "precision-purple": {
+        "role": "secondary",
+        "displayName": "Precision Purple",
+        "canonical": "#880c54",
+        "tonalRamp": ["#34051f", "#590735", "#880c54", "#aa3574", "#c76598", "#dc9abb", "#efcadf", "#faedf5"]
+      },
+      "clean-white": {
+        "role": "neutral",
+        "displayName": "Clean White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#1a1d20", "#3e444a", "#686f76", "#949ba1", "#bec4c9", "#dde1e4", "#f1f3f5", "#ffffff"]
+      },
+      "technical-ink": {
+        "role": "neutral",
+        "displayName": "Technical Ink",
+        "canonical": "#10253d",
+        "tonalRamp": ["#08131f", "#10253d", "#29435e", "#4f6479", "#788b9e", "#a6b3bf", "#d4dce3", "#f4f7f9"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Industrial Display", "purpose": "Hero claim only." },
+      "headline": { "displayName": "Condensed Headline", "purpose": "Section hierarchy and major proof points." },
+      "body": { "displayName": "Technical Body", "purpose": "Readable explanations, forms, and tables." },
+      "label": { "displayName": "Action Label", "purpose": "Navigation, controls, chips, and field labels." }
+    },
+    "shadows": [
+      { "name": "low", "value": "0 8px 24px rgba(4, 42, 72, 0.1)", "purpose": "Sticky header and restrained button feedback." },
+      { "name": "medium", "value": "0 18px 48px rgba(4, 42, 72, 0.16)", "purpose": "Resting cards, figures, and forms." },
+      { "name": "high", "value": "0 28px 72px rgba(4, 42, 72, 0.22)", "purpose": "Portfolio hover and active grouping." }
+    ],
+    "motion": [
+      { "name": "fast", "value": "160ms", "purpose": "Color, border, and opacity state feedback." },
+      { "name": "base", "value": "240ms", "purpose": "Shadow and portfolio lift transitions." },
+      { "name": "slow", "value": "560ms", "purpose": "Hero and portfolio image reveals only." },
+      { "name": "precision-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Controlled deceleration without bounce." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "620px" },
+      { "name": "compact", "value": "900px" },
+      { "name": "wide", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main quote or file-submission action.",
+      "html": "<button class=\"ds-btn-primary\">Minta Penawaran</button>",
+      "css": ".ds-btn-primary{min-height:56px;padding:14px 20px;border:1px solid var(--purple,#880c54);border-radius:8px;background:var(--purple,#880c54);color:#fff;font-family:Manrope,Segoe UI,sans-serif;font-size:14px;font-weight:800;transition:background-color 160ms ease,box-shadow 240ms ease}.ds-btn-primary:hover{background:#6f0844;box-shadow:0 8px 24px rgba(4,42,72,.1)}.ds-btn-primary:active{box-shadow:none}.ds-btn-primary:focus-visible{outline:3px solid #880c54;outline-offset:3px;box-shadow:0 0 0 6px #f4c9e2}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "description": "A supporting action on a blue brand surface.",
+      "html": "<div class=\"ds-brand-surface\"><button class=\"ds-btn-secondary\">Lihat Kapasitas</button></div>",
+      "css": ".ds-brand-surface{padding:24px;background:#0c5488}.ds-btn-secondary{min-height:56px;padding:14px 20px;border:1px solid #fff;border-radius:8px;background:transparent;color:#fff;font-family:Manrope,Segoe UI,sans-serif;font-size:14px;font-weight:800;transition:background-color 160ms ease,color 160ms ease}.ds-btn-secondary:hover{background:#fff;color:#062f52}.ds-btn-secondary:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #880c54}"
+    },
+    {
+      "name": "Technical Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A clear field for dimensions, contact data, and specifications.",
+      "html": "<label class=\"ds-field\">Ketebalan (mm)<input placeholder=\"Contoh: 3\"></label>",
+      "css": ".ds-field{display:grid;gap:8px;color:#062f52;font-family:Manrope,Segoe UI,sans-serif;font-size:14px;font-weight:800}.ds-field input{min-height:56px;padding:12px 16px;border:1px solid #7898ad;border-radius:8px;background:#fff;color:#10253d;font:400 16px/1.5 Manrope,Segoe UI,sans-serif;transition:border-color 160ms ease,box-shadow 160ms ease}.ds-field input:hover{border-color:#0c5488}.ds-field input:focus{border-color:#0c5488;outline:3px solid #880c54;outline-offset:2px;box-shadow:0 0 0 6px #f4c9e2}"
+    },
+    {
+      "name": "Technical Chip",
+      "kind": "chip",
+      "description": "Compact status or portfolio-category metadata.",
+      "html": "<span class=\"ds-chip\">Industrial</span>",
+      "css": ".ds-chip{display:inline-flex;padding:7px 12px;border:1px solid #880c54;border-radius:999px;background:#880c54;color:#fff;font-family:Manrope,Segoe UI,sans-serif;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}"
+    },
+    {
+      "name": "Portfolio Card",
+      "kind": "card",
+      "refersTo": "portfolio-card",
+      "description": "A proof card pairing close-up fabrication imagery with process data.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\">EDGE QUALITY</div><div class=\"ds-card-body\"><strong>Tepi Potong Bersih</strong><span>Fiber laser · Mild Steel · 12 mm</span></div></article>",
+      "css": ".ds-card{overflow:hidden;border-radius:16px;background:#fff;color:#10253d;box-shadow:0 18px 48px rgba(4,42,72,.16);font-family:Manrope,Segoe UI,sans-serif;transition:transform 240ms cubic-bezier(.16,1,.3,1),box-shadow 240ms ease}.ds-card:hover{transform:translateY(-6px);box-shadow:0 28px 72px rgba(4,42,72,.22)}.ds-card:focus-within{outline:3px solid #880c54;outline-offset:3px}.ds-card-media{min-height:180px;padding:16px;background:linear-gradient(135deg,#10253d,#52677d);color:#fff;font-size:12px;font-weight:800;letter-spacing:.09em}.ds-card-body{display:grid;gap:8px;padding:20px 24px}.ds-card-body strong{color:#062f52;font-size:20px}.ds-card-body span{color:#52677d;font-size:14px}"
+    },
+    {
+      "name": "Desktop Navigation",
+      "kind": "nav",
+      "description": "A calm bordered navigation group for technical landing pages.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Layanan</a><a href=\"#\">Kapasitas</a><a href=\"#\">Portofolio</a></nav>",
+      "css": ".ds-nav{display:flex;gap:24px;padding:8px 16px;border:1px solid #c9d7e1;border-radius:12px;background:#fff;font-family:Manrope,Segoe UI,sans-serif}.ds-nav a{display:inline-flex;min-height:44px;align-items:center;color:#10253d;font-size:14px;font-weight:700;text-decoration:none;transition:color 160ms ease}.ds-nav a:hover{color:#880c54}.ds-nav a:focus-visible{outline:3px solid #880c54;outline-offset:3px;box-shadow:0 0 0 6px #f4c9e2}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Precision Workshop",
+    "overview": "The system translates a clean fabrication floor into a digital interface: technically credible, highly legible, and confident without becoming loud. It preserves Braling's blue-white-purple identity while using industrial photography, disciplined grids, and compact technical facts to help engineers, estimators, and procurement teams decide quickly. The visual language is premium but practical. White space separates decisions, blue establishes authority, and purple appears selectively where action or status deserves attention. Spatial motion belongs only to the hero and portfolio; every other interaction responds through color, border, opacity, or depth.",
+    "keyCharacteristics": [
+      "Technical hierarchy before decoration.",
+      "Strong condensed headlines paired with readable Manrope body copy.",
+      "Sharp-soft geometry with 8–16px radii.",
+      "Structural shadows used selectively, never as ambient clutter.",
+      "Accessible focus, error, disabled, and busy states."
+    ],
+    "rules": [
+      { "name": "The 60-30-10 Rule", "body": "Let blue dominate, white provide breathing room, and purple remain rare enough to signal action immediately.", "section": "colors" },
+      { "name": "The Two-Voice Rule", "body": "Condensed type speaks for authority; Manrope explains the evidence.", "section": "typography" },
+      { "name": "The Structural Shadow Rule", "body": "Use elevation to clarify stacking or interaction, never to decorate empty space.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do lead with material, tolerance, file-format, and process evidence.",
+      "Do use purple for decisions, status, and focus—not broad background coverage.",
+      "Do keep state feedback non-spatial outside hero and portfolio.",
+      "Do preserve visible keyboard focus and 44px minimum interaction targets."
+    ],
+    "donts": [
+      "Don't turn the site into a generic gradient-heavy startup landing page.",
+      "Don't invent certifications, customers, production metrics, or machine capability.",
+      "Don't add competing display fonts, arbitrary radii, or decorative shadow styles.",
+      "Don't use decorative entrance animation across every section."
+    ]
+  }
+}

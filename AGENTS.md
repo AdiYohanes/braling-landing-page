@@ -14,4 +14,5 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Visual ratio: approximately 60% rich blue `#0c5488`, 30% white `#ffffff`, and 10% royal purple `#880c54`; purple is reserved for conversion actions and small accents.
 - Primary outcome: WhatsApp consultations and quote requests for laser cutting CNC, bending, shearing, custom fabrication, and automotive metal parts.
 - Preserve a precision-engineering tone, strong left-aligned hero hierarchy, authentic workshop imagery, visible trust strip, keyboard accessibility, and mobile-first responsiveness.
+- Extend the incumbent identity into a modern, premium precision-industrial design system; normalize typography, spacing, radius, elevation, iconography, motion, and component states without turning the site into a generic startup aesthetic.
 - Do not add CV content, gift cards, account login, fake certifications, fake client logos, or invented performance metrics.
